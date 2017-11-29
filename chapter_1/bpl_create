@@ -1,0 +1,11 @@
+#!/bin/bash
+################################################################################
+#: Title       : Exercise 1: Bpl
+#: Date        : 2017-Nov-28
+#: Author      : Anthony Tilelli
+#: Version     : 1
+#: Description : Create bpl directoy in $HOME with bin and scripts  subdirectory 
+#: Options     : NONE
+################################################################################
+mkdir -p "$HOME/bpl/bin"
+mkdir -p "$HOME/bpl/scripts"
