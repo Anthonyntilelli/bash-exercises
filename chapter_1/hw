@@ -1,0 +1,12 @@
+#!/bin/bash
+################################################################################
+#: Title       : Exercise 2: hw
+#: Date        : 2017-NOV-28
+#: Author      : Anthony Tilelli
+#: Version     : 1
+#: Description : Prints Hello World!
+#: Options     : NONE
+################################################################################
+
+echo "Hello World!"
+exit 0
