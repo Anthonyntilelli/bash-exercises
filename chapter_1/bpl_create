@@ -8,5 +8,9 @@
 #: Options     : NONE
 ################################################################################
 mkdir -p "$HOME/bpl/bin"
+<<<<<<< HEAD
 mkdir -p "$HOME/bpl/scripts"
 exit 0
+=======
+mkdir -p "$HOME/bpl/scripts"
+>>>>>>> 9178ba8b3b4c958355f0ff28c74335a4d2aeed61
