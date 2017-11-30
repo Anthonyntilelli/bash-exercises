@@ -1,0 +1,13 @@
+#!/bin/bash
+################################################################################
+#: Title       : Exercise 2: Random Numbers
+#: Date        : 2017-NOV-30
+#: Author      : Anthony Tilelli
+#: Version     : 1
+#: Description : Prints 4 random numbers and saves to a file
+#: Options     : NONE
+################################################################################
+true > /tmp/numbers.tmp #clearing file
+printf "%11d\\n" "$RANDOM" "$RANDOM" "$RANDOM" "$RANDOM" | tee "/tmp/numbers.tmp"
+
+exit 0
