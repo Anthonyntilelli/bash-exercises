@@ -1,0 +1,16 @@
+#!/bin/bash
+################################################################################
+#: Title       : Exercise 2: Ask file name
+#: Date        : 2017-Dec-3
+#: Author      : Anthony Tilelli
+#: Version     : 1
+#: Description : Asks a user for a file name quits if the exists
+#: Options     : NONE
+################################################################################
+file_name="null"
+until [[ -e "$file_name" ]]  && [[ ! -d  $file_name ]]; do
+  printf "%s" "Enter a file name to see if it exits: "
+  read -r file_name
+done
+echo "Choosen file exist"
+exit 0

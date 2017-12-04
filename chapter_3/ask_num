@@ -1,0 +1,23 @@
+#!/bin/bash
+################################################################################
+#: Title       : Exercise 1: Ask Number
+#: Date        : 2017-Dec-3
+#: Author      : Anthony Tilelli
+#: Version     : 1
+#: Description : Asks a user for a number 20 - 30 and returns number
+#: Options     : NONE
+################################################################################
+number="0"
+until [[ "$number" -ge "20" ]]  && [[ "$number" -le "30" ]]; do
+  printf "%s" "Enter number between 20 and 30: "
+  read -r number
+  case $number in
+    *[!0-9]*)
+      printf "ERROR: That is not a positive number \\n"
+      number="0" # clears invalid entry
+    ;;
+  esac
+done
+
+printf "%s\\n" "Number entered: $number"
+exit 0
