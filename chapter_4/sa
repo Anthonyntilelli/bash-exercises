@@ -1,0 +1,18 @@
+#!/bin/bash
+################################################################################
+#: Title       : Exercise 1: sa
+#: Date        : 2017-Dec-4
+#: Author      : Chis F.A. Johnson and Jayant Varma
+#: Description : Prints out the arguments on different lines
+#: Options     : NO
+#results       : 5
+# :0:
+# :2017:
+# :12:
+# :04:
+# :john Doe:
+################################################################################
+pre=:
+post=:
+printf "$pre%s$post\n" "$@"
+exit 0

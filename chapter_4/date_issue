@@ -1,0 +1,28 @@
+#!/bin/bash
+################################################################################
+#: Title       : Exercise 2 : date_issue
+#: Date        : 2017-Dec-4
+#: Author      : Anthony Tilelli
+#: Version     : 1
+#: Description : see danger of non quoted command substitution
+#: Options     : NONE
+#: DANGER      : Unquoted command will have word splitting and pathname
+#:               expansion on them.
+################################################################################
+#Unquoted
+year=$( date +%Y )
+month=$( date +%m)
+day=$( date +%d )
+hour=$( date +%H )
+minute=$( date +%M)
+second=$( date +%S )
+
+#BETTER
+year=$(   date "+%Y" )
+month=$(  date "+%m" )
+day=$(    date "+%d" )
+hour=$(   date "+%H" )
+minute=$( date "+%M" )
+second=$( date "+%S" )
+
+exit 0
