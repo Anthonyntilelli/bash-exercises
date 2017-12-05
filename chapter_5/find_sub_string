@@ -1,0 +1,26 @@
+#!/bin/bash
+################################################################################
+#: Title       : Exercise 3 : find_sub_string
+#: Date        : 2017-Dec-4
+#: Author      : Anthony Tilelli
+#: Version     : 1
+#: Description : find 168 of variable using parameter expansion
+#: Options     : NONE
+################################################################################
+readonly VALUE="192.168.0.123"
+
+# option 1
+target1="${VALUE#192.}"
+target1="${target1%.0.123}"
+printf "%s\\n" "TARGET1:\"$target1\""
+
+# option 2
+target2="${VALUE//192./}"
+target2="${target2//.0.123/}"
+printf "%s\\n" "TARGET2:\"$target2\""
+
+# (Prefered) Option 3
+target3="${VALUE:4:3}"
+printf "%s\\n" "TARGET3:\"$target3\""
+
+exit 0
