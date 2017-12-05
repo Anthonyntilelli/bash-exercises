@@ -1,0 +1,84 @@
+#!/bin/bash
+################################################################################
+#: Title       : Exercise: isvalidip
+#: Date        : 2017-Dec-5
+#: Author      : Anthony Tilelli (modified version)
+#: Version     : 1
+#: Description : Converts isvalidip to use parameter expansion instead of IFS
+#: Options     : NONE
+################################################################################
+readonly IP1="9.9.9.9"
+readonly IP2="abc.150.2.21" #invalid
+readonly IP3="256.192.555.3" #invalid
+readonly IP4="1.2.3.4"
+readonly IP5="192.169.2.1"
+readonly IP6="192.3.3" #invalid
+
+
+isValidIp() { #original
+  case $1 in
+    "" | *[!0-9.]* | *[!0-9]) return 1
+  esac
+
+local  IFS=.
+
+set -- $1 #word splitting desired.
+
+[ $# -eq 4 ] &&
+[ ${1:-666} -le 255 ] && [ ${2:-666} -le 255 ] &&
+[ ${3:-666} -le 255 ] && [ ${4:-666} -le 255 ]
+
+}
+
+isValidIp() { #original
+  case $1 in
+    "" | *[!0-9.]* | *[!0-9]) return 1
+  esac
+
+local  IFS=.
+
+set -- $1 #word splitting desired.
+
+[ $# -eq 4 ] &&
+[ ${1:-666} -le 255 ] && [ ${2:-666} -le 255 ] &&
+[ ${3:-666} -le 255 ] && [ ${4:-666} -le 255 ]
+
+}
+isValidIp_modified() {
+  ip="$1"
+  case $ip in
+  "" | *[!0-9.]* | *[!0-9]) return 1
+  esac
+  if [[ "${ip//[0-9]/}" == "..." ]] ; then #3 '.' in an IPv4 address
+   local first="${ip%%.*}"
+   local last="${ip##*.}"
+   local second="${ip%.*.*}" && second="${second##*.}"
+   local third="${ip#*.*.}"  && third="${third%.*}"
+   [ ${first:-666} -le 255 ]  || return 1
+   [ ${second:-666} -le 255 ] || return 1
+   [ ${third:-666} -le 255 ]  || return 1
+   [ ${last:-666} -le 255 ]   || return 1
+  else
+    return 1
+  fi
+}
+
+#for i in "$IP1" "$IP2" "$IP3" "$IP4" "$IP5" "$IP6"
+#do
+#  if isValidIp "$i" ; then
+#    printf "%s\\n" "ORIGINAL: $i is valid"
+#  else
+#    printf "%s\\n" "ORIGINAL: $i is invalid"
+#  fi
+#done
+
+for i in "$IP1" "$IP2" "$IP3" "$IP4" "$IP5" "$IP6"
+do
+  if isValidIp_modified "$i" ; then
+    printf "%s\\n" "Modified: $i is valid"
+  else
+    printf "%s\\n" "Modified: $i is invalid"
+  fi
+done
+
+exit 0
