@@ -1,0 +1,46 @@
+#!/bin/bash
+################################################################################
+#: Title       : Exercise 3: palindrome (function)
+#: Date        : 2018-Dec-8
+#:  Author     : Anthony Tilelli
+#: Version     : 1
+#: Description : Returns 0 if $1 is a palindrome or one if not
+#:             : $2 message is displayed on true (blank skipped)
+#:             : $3 message is displayed on failure (blank skipped)
+#:             : Case sensitive test (racecar != raceCAR)
+#:             : Punctation and whitespace is ignored.
+################################################################################
+revstr() { #Based on book
+  #reverses provided string into _REVSTR
+  local var="$1"
+  _REVSTR=""
+  while [ -n "$var" ]
+  do
+    _REVSTR+="${var:$(( ${#var} - 1)):1}"
+    var="${var%?}"
+  done
+}
+
+palindrome(){
+  local input="$1"
+  local -r PASS_MSG="$2"
+  local -r FAIL_MSG="$3"
+
+  input=${input//[[:punct:]]/}
+  input=${input//[[:space:]]/}
+  revstr "$input"
+  if [[ "$_REVSTR" = "$input" ]] ; then
+    [[ -n "$PASS_MSG" ]] && printf "%s\\n" "$PASS_MSG"
+    return 0
+  else
+    [[ -n "$FAIL_MSG" ]] && printf "%s\\n" "$FAIL_MSG"
+    return 1
+  fi
+
+}
+
+palindrome "raceCAR" #FAIL
+palindrome "racecar" "I PASSED as expected"
+palindrome "taco cat"
+palindrome "tac.o cat" "I PASSED" "I FAILED"
+palindrome "FAIL" "" "I Failed as expected"

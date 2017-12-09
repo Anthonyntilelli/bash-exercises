@@ -1,0 +1,35 @@
+#!/bin/bash
+################################################################################
+#: Title       : Exercise 3: trim (function)
+#: Date        : 2018-Dec-9
+#:  Author     : Anthony Tilelli
+#: Version     : 1
+#: Description : Trims spaces from strings
+
+################################################################################
+
+ltrim(){
+  _ltrim="$1"
+  while [[ -n "$_ltrim" ]]; do
+    case "$_ltrim" in
+    " "*) _ltrim="${_ltrim#?}" ;;
+    *)  break
+    esac
+  done
+}
+rtrim(){
+  _rtrim="$1"
+  while [[ -n "$_rtrim" ]]; do
+    case "$_rtrim" in
+    *" ") _rtrim="${_rtrim%?}" ;;
+    *)  break
+    esac
+  done
+}
+
+word="   hello   "
+rtrim "$word"
+ltrim "$word"
+
+printf "%s\\n" "|${_ltrim}|"
+printf "%s\\n" "|${_rtrim}|"
