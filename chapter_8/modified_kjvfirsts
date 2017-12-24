@@ -1,0 +1,22 @@
+#!/bin/bash
+################################################################################
+#: Title       : Exercise 1 : modified_kjvfirsts
+#: Date        : 12/23/2017
+#: Author      : Anthony Tilelli
+#: Version     : 1
+#: Description : modified version of kjvfirsts in to add command line argument
+#:             : that specify which chapters to be printed
+#: Options     : integer to detemine which chapters to display
+################################################################################
+shopt -s extglob
+readonly kjv="$HOME/workspace/chapter_8/kjv.txt"
+chapter_limit="$1"
+while IFS=: read book chapter verse text
+do 
+  absolute_chapter=${chapter##*(0)}
+  if (( chapter_limit == absolute_chapter )) ; then
+    firstword=${test%% *}
+    printf "%s %s:%s %s\n" "$book" "$chapter" "$verse" "$text"
+  fi
+done < "$kjv"
+exit 0
