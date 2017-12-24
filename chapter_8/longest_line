@@ -1,0 +1,16 @@
+#!/bin/bash
+################################################################################
+#: Title       : Exercise 3: longest_line
+#: Date        : 12/23/2017
+#: Author      : Anthony Tilelli
+#: Version     : 1
+#: Description : awk script to find longest line (Modified AWK from chapter 8)
+################################################################################
+readonly kjv="$HOME/workspace/chapter_8/kjv.txt"
+awk -F: 'BEGIN { max = 0 } 
+length($0) + length($1) > max {
+  max = length($0) + length($1)
+  verse = $0
+  }
+END {print verse }' "$kjv"
+exit 0
